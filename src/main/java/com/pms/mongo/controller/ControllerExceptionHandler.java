@@ -11,13 +11,13 @@ import com.pms.mongo.service.exception.StandardError;
 import jakarta.servlet.http.HttpServletRequest;
 
 @ControllerAdvice
-public class ControllerExceptionHJandler {
+public class ControllerExceptionHandler {
 
 	@ExceptionHandler(ObjectNotFoundException.class)
 	public ResponseEntity<StandardError> objectNotFound(ObjectNotFoundException e, HttpServletRequest request) {
 
 		HttpStatus status = HttpStatus.NOT_FOUND;
-		StandardError err = new StandardError(System.currentTimeMillis(), status.value(), "Não encontrado",
+		StandardError err = new StandardError(System.currentTimeMillis(), status.value(), "Not Found",
 				e.getMessage(), request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
 	}
